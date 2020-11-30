@@ -6,6 +6,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import LandingPage from './components/views/LandingPage/LandingPage';
+import LoginPage from './components/views/LoginPage/LoginPage';
+import NavBar from './components/views/NavBar/Navbar';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
 
 function App() {
   return (
@@ -13,13 +17,14 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <LandingPage />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/login">
+            <LoginPage />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
+          <Route path="/register">
+            <RegisterPage />
+            
           </Route>
         </Switch>
       </div>
