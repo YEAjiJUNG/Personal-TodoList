@@ -28,7 +28,7 @@ function LoginPage(props){
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess){
-                    props.history.push('/')
+                    props.history.push('/') //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
                 } else{
                     alert('Error')
                 }
@@ -37,10 +37,8 @@ function LoginPage(props){
     }
 
     return(
-        <div style={{ 
-            display:'flex', justifyContent:'center', alignItems:'center', 
-            width:'100%', height:'100vh'
-        }}>
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center",  
+            width: "100%", height: "100vh"}}>
             <form style={{ display:'flex', flexDirection:'column'}}
                 onSubmit={onSubmitHandler}>
                 <label>Email</label>
@@ -48,7 +46,7 @@ function LoginPage(props){
                 <label>Password</label>
                 <input type="password" value={Password} onChange={onPasswordHandler} />
                 <br />
-                <button>
+                <button type="submit">
                     Login
                 </button>
             </form>
