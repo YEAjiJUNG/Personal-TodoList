@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../_actions/user_action';
+import { registerUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 
 
@@ -27,18 +27,23 @@ function RegisterPage(props){
     const onSubmitHandler = (e) => {
         e.preventDefault();//페이지 리프레시 막아준다
 
+        if(Password !== ConfirmPassword){
+            return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
+        }
+
 
         let body = {
             email: Email,
-            password: Password
+            name: Name,
+            password: Password,
         }
         //dispatch이용해서 action취할 것이다. 그 action이름 loginUser
-        dispatch(loginUser(body))
+        dispatch(registerUser(body))
             .then(response => {
-                if(response.payload.loginSuccess){
-                    props.history.push('/') //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
+                if(response.payload.success){
+                    props.history.push('/login') //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
                 } else{
-                    alert('Error')
+                    alert('Failed to sign up')
                 }
             })
 

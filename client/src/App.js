@@ -10,22 +10,16 @@ import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import NavBar from './components/views/NavBar/Navbar';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import Auth from './hoc/auth';
 
 function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/register">
-            <RegisterPage />
-            
-          </Route>
+          <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Route path="/login" component={Auth(LoginPage, false)} />
+          <Route path="/register" componenet={Auth(RegisterPage, false)} />
         </Switch>
       </div>
     </Router>

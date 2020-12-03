@@ -1,5 +1,7 @@
 import {
-    LOGIN_USER
+    LOGIN_USER, 
+    REGISTER_USER,
+    AUTH_USER
 } from '../_actions/types';
 
 export default function(state={}, action) {
@@ -9,6 +11,12 @@ export default function(state={}, action) {
             //위의 비어있는 state그대로가져온다는 것(...state)
             return { ...state, loginSuccess: action.payload}
             break;
+        case REGISTER_USER:
+            return { ...state, register: action.payload}
+            break;
+        case AUTH_USER:
+            return { ...state, userData: action.payload}
+            break; 
 
         default:
             return state;
