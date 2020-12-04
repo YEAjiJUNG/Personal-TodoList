@@ -37,7 +37,7 @@ function RegisterPage(props){
             name: Name,
             password: Password,
         }
-        //dispatch이용해서 action취할 것이다. 그 action이름 loginUser
+        //dispatch이용해서 action취할 것이다. 그 action이름 registerUser
         dispatch(registerUser(body))
             .then(response => {
                 if(response.payload.success){
