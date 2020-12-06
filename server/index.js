@@ -30,7 +30,7 @@ app.post('/api/users/register', (req,res) => {
 
     //bodyparser을 이용해서req.body로 client에서 보내준 정보를 받아준다.
     const user = new User(req.body)//인스턴스 만들기(req.body는 bodyparser 때문에 가능)
-    user.save((err,userInfo) => {//save는 mongoDb의 method, 정보들이 유저모델에 저장
+    user.save((err,userInfo ) => {//save는 mongoDb의 method, 정보들이 유저모델에 저장
         if(err) return res.json({success: false, err})
         return res.status(200).json({
             success: true
@@ -41,7 +41,8 @@ app.post('/api/users/register', (req,res) => {
 app.post('/api/users/login', (req, res) => {
     //요청된 이메일을 데이터베이스에서 있는지 찾는다.
     User.findOne({ email: req.body.email }, (err, user) =>{
-        if(!user){//email을 가진 유저가 없다면 user가 없다는 것
+        if(!user){
+            //email을 가진 유저가 없다면 user가 없다는 것
             return res.json({
                 loginSuccess: false,
                 message: "제공된 이메일에 해당하는 유저가 없습니다."
