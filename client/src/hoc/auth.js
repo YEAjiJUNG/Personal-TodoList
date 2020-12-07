@@ -2,8 +2,8 @@ import Axios from "axios";
 import { useEffect } from "react";
 import React from 'react';
 import axios from 'axios';
-import { useDispatch } from  'react-redux';
 //useDispatch라는 리덕스훅
+import { useDispatch } from  'react-redux';
 import {auth} from '../_actions/user_action';
 
 export default function (SpecificComponent, option, adminRoute = null) {
