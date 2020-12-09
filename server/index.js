@@ -81,7 +81,7 @@ app.get('/api/users/auth', auth, (req, res) => {
         image: req.user.image
     })
 })
-
+//로그인 된 상태기 때문에 auth를 넣어준다.
 app.get('/api/users/logout', auth, (req, res) => {
     User.findOneAndUpdate({ _id: req.user._id },
     {token: ""},(err, user) => {
