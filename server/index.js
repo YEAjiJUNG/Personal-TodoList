@@ -23,7 +23,6 @@ mongoose.connect(config.mongoURI, {
     .catch(err => console.log(err))
 
 
-app.get('/api/hello', (req, res) => res.send("Hello world!!"))
 //회원가입 할때 필요한 정보들을 client에서 가져오면 
 //그것들을 데이터 베이스에 넣어준다.
 app.post('/api/users/register', (req,res) => {
