@@ -19,6 +19,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
 
         const dispatch = useDispatch();
         
+        //페이지 이동할 때마다 dispatch가 실행된다. 계속 유저 정보를 받아오고있다.
         //backend에 request날려서 서버에서 현재 상태정보 가져오는 일
         useEffect(() => {
             
@@ -33,6 +34,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
                     }
                 }else{
                     //로그인 한 상태
+                    //admin만 들어갈 수 있는 페이지인데 isAdmin이 false일 때
                     if(adminRoute && !response.payload.isAdmin){
                         props.history.push('/')
                     }else{
