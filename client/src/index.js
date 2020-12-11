@@ -11,11 +11,11 @@ import { createStore } from 'redux';
 import Reducer from './_reducers';
 import { applyMiddleware} from 'redux';
 
-//리덕스에서 store생성하는데, 그냥 store는 객체형식만 받을 수 있기 때문에
+//리덕스에서 store생성하는데, 그냥 store는 객체형식만 받을 수 있기 때문에 promise와 function받을수있게해줌
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
 
 ReactDOM.render(
-  <Provider
+  <Provider //리덕스와 app을 연결하기 위해 리덕스에서 제공하는 provider
     store={createStoreWithMiddleware(Reducer,
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
       window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -26,8 +26,4 @@ ReactDOM.render(
 
   , document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
