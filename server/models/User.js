@@ -74,7 +74,8 @@ userSchema.methods.generateToken = function(cb){
     user.token = token
     user.save(function(err, user) {
         if(err) return cb(err)
-        cb(null, user) //error가 없으면 콜백함수 null, 그리고 user정보만 전달
+        cb(null, user)
+         //error가 없으면 콜백함수 null, 그리고 user정보만 전달
     })
 }
 
