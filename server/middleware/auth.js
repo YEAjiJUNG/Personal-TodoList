@@ -15,7 +15,8 @@ let auth = (req, res, next) => {
 
         req.token = token;
         req.user = user;
-        next();//미들웨어에서 갇혀있지않도록
+        next();
+        //미들웨어에서 갇혀있지않도록
     })
     //유저가 있으면 인증 okay
     //없으면 인증 no;
