@@ -20,7 +20,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
         const dispatch = useDispatch();
         
         //페이지 이동할 때마다 dispatch가 실행된다. 계속 유저 정보를 받아오고있다.
-        //backend에 request날려서 서버에서 현재 상태정보 가져오는 일
+        //먼저 auth에서 backend에 request날려서 서버에서 현재 상태정보 가져오는 일
         useEffect(() => {
             
             //action이름을 auth라고
@@ -44,6 +44,8 @@ export default function (SpecificComponent, option, adminRoute = null) {
                 }
             })
 
+            //middleware auth에 이미 정보를 받아놨다. 로그인 한 유저인지 아닌 유저인지
+            //그래서 앞의 auth에 request보내서 유저 상태 받아온다.
             axios.get('/api/users/auth')
         }, [])
 
