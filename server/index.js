@@ -91,5 +91,11 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
 })
 
+app.get('api/users/todolist', (req, res) => {
+    User.findOne({name: req.user.name}, function(err, user){
+        if(err) return cb(err);
+    })
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 
