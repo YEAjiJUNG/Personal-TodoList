@@ -8,7 +8,7 @@
 }
 
 .TodoTemplate .app-title {
-  background: #22b8cf;
+  background: hsl(325, 61%, 52%);
   color: white;
   height: 4rem;
   font-size: 1.5rem;
