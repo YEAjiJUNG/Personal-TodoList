@@ -31,6 +31,9 @@ const userSchema = mongoose.Schema({
     },
     tokenExp:{//token 유효기간
         type: Number
+    },
+    todolist:{
+        type: String
     }
 })
 
