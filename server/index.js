@@ -92,8 +92,9 @@ app.get('/api/users/logout', auth, (req, res) => {
 })
 
 app.get('api/users/todolist', (req, res) => {
-    User.findOne({name: req.user.name}, function(err, user){
+    User.findOne({email: req.user.email}, function(err, user){
         if(err) return cb(err);
+        return cb(null, user);
     })
 })
 
