@@ -28,7 +28,7 @@ function LoginPage(props){
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess){
-                    props.history.push('/') //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
+                    props.history.push('/todolist') //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
                 } else{
                     alert('Error')
                 }
