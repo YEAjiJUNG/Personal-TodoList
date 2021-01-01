@@ -1,0 +1,13 @@
+.TodoListItem {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  &:nth-child(even) {
+    background: #f8f9fa;
+  }
+  .text {
+    margin-top: 0.6em;
+    margin-left: 1em;
+    font-size: 1rem;
+  }
+}
