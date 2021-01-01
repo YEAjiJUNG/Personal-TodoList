@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
+import './TodoList.scss';
+import TodoListItem from './TodoListItem';
 
 
 
@@ -25,13 +27,13 @@ const TodoList = () => {
     ]
 
     return(
-        <div className="TodoList">
-            <TodoTemplatePage>
-            {todos.map((todo, id) =>(
-                <li key={id}>{todo.text}</li>
-            ))}
-            </TodoTemplatePage>
-        </div>
+        <TodoTemplatePage>
+            <div className="TodoList">
+                {todos.map((todo, id) =>(
+                <TodoListItem key={id} todo={todo}></TodoListItem>
+                ))}
+            </div>
+        </TodoTemplatePage>
     )
 
 }   

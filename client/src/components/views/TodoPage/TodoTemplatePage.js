@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './TodoTemplatePage.css';
-import TodoInsert from './TodoInsert';
 
 function TodoTemplatePage({children}){
     return(
