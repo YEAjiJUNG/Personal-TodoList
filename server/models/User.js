@@ -32,9 +32,7 @@ const userSchema = mongoose.Schema({
     tokenExp:{//token 유효기간
         type: Number
     },
-    todolist:{
-        type: String
-    }
+    todolist:[{body :String}]
 })
 
 userSchema.pre('save', function(next){
@@ -80,6 +78,18 @@ userSchema.methods.generateToken = function(cb){
         cb(null, user)
          //error가 없으면 콜백함수 null, 그리고 user정보만 전달
     })
+}
+
+userSchema.statics.updateTodoList = function(useremail, todo, cb) {
+    var user = this;
+    user.findOneAndUpdate({email : useremail}, {$set:{todolist : todo}}, (err, doc) => {
+        if (err) {
+            console.log("Something Wrong");
+            cb(err);
+        }
+        console.log(doc);
+        cb();
+    });
 }
 
 userSchema.statics.findByToken = function(token, cb){

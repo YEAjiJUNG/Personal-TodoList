@@ -91,10 +91,28 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
 })
 
-app.get('api/users/todolist', (req, res) => {
+app.get('/api/users/todolist', auth, (req, res) => {
     User.findOne({email: req.user.email}, function(err, user){
         if(err) return cb(err);
         return cb(null, user);
+    })
+})
+
+// Update todolist
+app.put('/api/users/todolist', auth, (req, res) => {
+    var useremail = req.user.email; 
+    var list = req.user.todolist;
+    list.push({body: req.body.todo});
+    User.updateTodoList(useremail, list, (err) => {
+        if (err) {
+            return res.status(400).json({
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            success: true
+        })
     })
 })
 
