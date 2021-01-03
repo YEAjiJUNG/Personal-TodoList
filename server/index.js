@@ -91,30 +91,47 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
 })
 
+// Get Todo list from auth(token)
 app.get('/api/users/todolist', auth, (req, res) => {
-    User.findOne({email: req.user.email}, function(err, user){
-        if(err) return cb(err);
-        return cb(null, user);
+    res.status(200).json({
+        _id: req.user._id,
+        isAdmin: req.user.role === 0? false: true,
+        isAuth: true,
+        email: req.user.email,
+        name: req.user.name,
+        lastname: req.user.lastname,
+        role: req.user.role,
+        image: req.user.image,
+        todolist: req.user.todolist
     })
 })
 
 // Update todolist
+// Add New todo element
+// Modify exist todo element
 app.put('/api/users/todolist', auth, (req, res) => {
     var useremail = req.user.email; 
     var list = req.user.todolist;
-    list.push({body: req.body.todo});
+    if (req.body._id) {
+        for (var i = 0; i < list.length; i++) {
+            if (req.body._id == list[i]._id) {
+                list[i].body = req.body.todo;
+                break;
+            }
+        }
+    } else {
+        list.push({body: req.body.todo});
+    }
     User.updateTodoList(useremail, list, (err) => {
         if (err) {
             return res.status(400).json({
                 success: false
             })
         }
-
         return res.status(200).json({
             success: true
         })
     })
 })
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 
