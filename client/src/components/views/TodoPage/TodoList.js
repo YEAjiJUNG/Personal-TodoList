@@ -3,10 +3,14 @@ import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
+import {useLocation} from 'react-router-dom';
 
 
-
+                                                                                                               
 const TodoList = () => {
+
+    const location = useLocation();
+    console.log(location.state);
 
     const todos = [
         {
@@ -27,6 +31,11 @@ const TodoList = () => {
     ]
 
     return(
+        <div>
+        <div className="hello">
+            님 안녕하세요!<br/>
+            일정을 확인하세요:)
+        </div>
         <TodoTemplatePage>
             <div className="TodoList">
                 {todos.map((todo, id) =>(
@@ -34,6 +43,7 @@ const TodoList = () => {
                 ))}
             </div>
         </TodoTemplatePage>
+        </div>
     )
 
 }   
