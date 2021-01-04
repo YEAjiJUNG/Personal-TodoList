@@ -11,7 +11,7 @@ const TodoList = (props) => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log(location.state.detail)
+        console.log(location.state)
     }, [location])
     
 
