@@ -4,7 +4,7 @@
   margin-right: auto;
   margin-top: 6rem;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .TodoTemplate .app-title {
@@ -15,4 +15,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.TodoTemplate .button {
+  float: right;
 }

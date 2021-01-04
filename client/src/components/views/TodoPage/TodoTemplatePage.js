@@ -11,8 +11,6 @@ function TodoTemplatePage({children}){
         <div className="TodoTemplate">
             <div className="app-title">일정 관리</div>
             <div className="content"> {children} </div>
-            <button className="button" onClick={() => {history.push({
-             pathname: "/todoinsert"})}}>편집</button>
         </div>
     )
 }

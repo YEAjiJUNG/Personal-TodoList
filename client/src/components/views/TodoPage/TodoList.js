@@ -3,12 +3,14 @@ import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
+import {useHistory} from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 
 
                                                                                                                
 const TodoList = (props) => {
     const location = useLocation();
+    const history = useHistory();
 
     useEffect(() => {
         console.log(location.state)
@@ -31,6 +33,7 @@ const TodoList = (props) => {
             text:'일정 관리 앱 만들어 보기',
             checked: false,
         },
+        
     ]
 
     return(
@@ -44,6 +47,8 @@ const TodoList = (props) => {
                 {todos.map((todo, id) =>(
                 <TodoListItem key={id} todo={todo}></TodoListItem>
                 ))}
+                 <button className="button" onClick={() => {history.push({
+             pathname: "/todoinsert"})}}>편집</button>
             </div>
         </TodoTemplatePage>
         </div>
