@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
@@ -7,10 +7,13 @@ import {useLocation} from 'react-router-dom';
 
 
                                                                                                                
-const TodoList = () => {
-
+const TodoList = (props) => {
     const location = useLocation();
-    console.log(location.state);
+
+    useEffect(() => {
+        console.log(location.state.)
+    }, [location])
+    
 
     const todos = [
         {
