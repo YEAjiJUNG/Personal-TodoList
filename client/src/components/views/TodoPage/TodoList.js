@@ -3,17 +3,10 @@ import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-
-                                                                                                               
-const TodoList = (props) => {
+const TodoList = () => {
     const location = useLocation();
-
-    useEffect(() => {
-        console.log(location.state)
-    }, [location])
-    
 
     const todos = [
         {
@@ -33,6 +26,7 @@ const TodoList = (props) => {
         },
     ]
 
+    //console.log(location.state.detail);
     return(
         <div>
         <div className="hello">
