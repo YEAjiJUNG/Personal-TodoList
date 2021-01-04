@@ -3,12 +3,15 @@ import Axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function LoginPage(props){
     const dispatch = useDispatch();
 
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
+    
+    const history = useHistory();
 
     const onEmailHandler = (e) => {
         setEmail(e.target.value)
@@ -28,7 +31,10 @@ function LoginPage(props){
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess){
-                    props.history.push('/todolist') //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
+                    history.push({
+                        pathname: '/todolist',
+                        state: {detail: 'a'}
+                    }) //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
                 } else{
                     alert('Error')
                 }
