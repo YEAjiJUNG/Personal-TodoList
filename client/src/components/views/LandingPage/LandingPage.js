@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 function LandingPage(props){
 
-    useEffect(() => {
-        axios.get('/api/hello')//서버로 보낸다
-        .then(response => console.log(response.data))//서버에서 온 응답을 받는다.
-    }, [])
-
+  
     const onClickHandler = () => {
         axios.get('/api/users/logout')
         .then(response => {

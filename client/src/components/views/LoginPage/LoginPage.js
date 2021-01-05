@@ -32,9 +32,9 @@ function LoginPage(props){
             .then(response => {
                 if(response.payload.loginSuccess){
                     history.push({
-                        pathname: '/todolist',
-                        state: {detail: 'a'}
-                    }) //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
+                        pathname: '/todolist', state: {todolist: response.payload.todolist, name: response.payload.name},
+                    }) 
+                    //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
                 } else{
                     alert('Error')
                 }
