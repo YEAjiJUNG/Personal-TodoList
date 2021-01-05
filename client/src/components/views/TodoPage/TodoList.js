@@ -3,19 +3,17 @@ import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
+import { useDispatch } from 'react-redux';
+
 import {useHistory} from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { todolistUser } from '../../../_actions/user_action';
 
-
-                                                                                                               
-const TodoList = (props) => {
+const TodoList = () => {
     const location = useLocation();
     const history = useHistory();
 
-    useEffect(() => {
-        console.log(location.state)
-    }, [location])
-    
+    const dispatch = useDispatch();
 
     const todos = [
         {
@@ -33,13 +31,11 @@ const TodoList = (props) => {
             text:'일정 관리 앱 만들어 보기',
             checked: false,
         },
-        
     ]
-
     return(
         <div>
         <div className="hello">
-            님 안녕하세요!<br/>
+            <b>{location.state.name}</b>님 안녕하세요!<br/>
             일정을 확인하세요:)
         </div>
         <TodoTemplatePage>
