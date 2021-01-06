@@ -3,13 +3,13 @@ import React from 'react';
 import './TodoListItem.scss';
 
 const TodoListItem = ({ todo }) => {
-    const{ text } = todo;
+    const{ body } = todo;
 
     return(
         <div className="TodoListItem">
            <ul>
                <li>
-               <div className="text">{text}</div>
+               <div className="text">{body}</div>
                </li>
             </ul> 
             
