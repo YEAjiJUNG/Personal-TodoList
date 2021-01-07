@@ -61,7 +61,7 @@ app.post('/api/users/login', (req, res) => {
 
                 return res.cookie("x_auth", user.token)
                 .status(200)
-                .json({ loginSuccess: true, userId: user._id, name: user.name, todolist: user.todolist})
+                .json({ loginSuccess: true, userId: user._id})
             })
         })
     })
@@ -94,21 +94,16 @@ app.get('/api/users/logout', auth, (req, res) => {
 // Get Todo list from auth(token)
 app.get('/api/users/todolist', auth, (req, res) => {
     res.status(200).json({
-        _id: req.user._id,
-        isAdmin: req.user.role === 0? false: true,
-        isAuth: true,
-        email: req.user.email,
-        name: req.user.name,
-        lastname: req.user.lastname,
-        role: req.user.role,
-        image: req.user.image,
-        todolist: req.user.todolist
-    })
+        listSuccess: true, name: req.user.name, todolist: req.user.todolist})
 })
 
 // Update todolist
 // Add New todo element
 // Modify exist todo element
+// Body {
+//  _id: dsjfqwicowo (optional) => modify
+//  todo:
+//}
 app.put('/api/users/todolist', auth, (req, res) => {
     var useremail = req.user.email; 
     var list = req.user.todolist;
