@@ -1,7 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import Axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -11,29 +8,23 @@ import TodoInsertListItem from './TodoInsertListItem';
 import {MdAdd} from 'react-icons/md';
 import './TodoInsert.scss';
 
-function TodoInsert(props){
-    const dispatch = useDispatch();
+function TodoInsert(){
     const history = useHistory();
     const location = useLocation();
 
     const [TodoList, setTodoList] = useState("");
 
-    const add = useCallback(
-        text => {
+    const add = (TodoList) => {
             const todo = {
-                text
+                TodoList
             };
-            setTodoList(location.state.todolist.concat(todo));
-        },
-        [location.state.todolist],
-    )
+            setTodoList(location.state.todolist.push(todo));
+            console.log(location.state.todolist)
+    }
 
-    const onTodoListHandler = (e) => {
+    const onChange= useCallback(e => {
         setTodoList(e.target.value)
-    }
-    const onSubmitHandler = (e) => {
-        e.preventDefault();//페이지 리프레시 막아준다
-    }
+    }, [])
 
     /* const todos = [
         {
@@ -58,12 +49,11 @@ function TodoInsert(props){
         },
     ]
     */
-
-    console.log(location.state.todolist)
+  
     return(
         <TodoTemplatePage>
             <form className="TodoInsert">
-                <input placeholder="할 일을 입력하세요" value={TodoList} onChange={onTodoListHandler}/>
+                <input placeholder="할 일을 입력하세요" value={TodoList} onChange={onChange}/>
                 <button type="submit" onClick={add}>
                     <MdAdd />
                 </button>
