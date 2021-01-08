@@ -106,17 +106,8 @@ app.get('/api/users/todolist', auth, (req, res) => {
 //}
 app.put('/api/users/todolist', auth, (req, res) => {
     var useremail = req.user.email; 
-    var list = req.user.todolist;
-    if (req.body._id) {
-        for (var i = 0; i < list.length; i++) {
-            if (req.body._id == list[i]._id) {
-                list[i].body = req.body.todo;
-                break;
-            }
-        }
-    } else {
-        list.push({body: req.body.todo});
-    }
+    var list = req.body.todolist;
+
     User.updateTodoList(useremail, list, (err) => {
         if (err) {
             return res.status(400).json({
