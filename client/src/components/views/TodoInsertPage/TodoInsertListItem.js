@@ -6,15 +6,16 @@ import {
 } from 'react-icons/md';
 import cn from 'classnames';
 import './TodoInsertListItem.scss';
+import { withRouter } from 'react-router-dom';
 
-const TodoInsertList = ({ todo }) => {
-    const{ text, checked } = todo;
+const TodoInsertListItem = ({ todo }) => {
+    const{ body } = todo;
 
     return(
         <div className="TodoInsertListItem">
-            <div className={cn('checkbox', {checked})} >
-                {checked? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-                <div className="text">{text}</div>
+            <div className="checkbox">
+                <MdCheckBoxOutlineBlank />
+                <div className="text">{body}</div>
             </div>
             <div className="remove">
                 <MdRemoveCircleOutline />
@@ -23,4 +24,4 @@ const TodoInsertList = ({ todo }) => {
     )
 }
 
-export default TodoInsertListItem;
+export default withRouter(TodoInsertListItem);

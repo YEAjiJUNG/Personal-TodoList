@@ -49,7 +49,7 @@ const TodoList = () => {
                 <TodoListItem key={id} todo={todo}></TodoListItem>
                 ))}
                  <button className="button" onClick={() => {history.push({
-             pathname: "/todoinsert"})}}>편집</button>
+             pathname: "/todoinsert",state: {todolist: todolist}})}}>편집</button>
             </div>
         </TodoTemplatePage>
         </div>
