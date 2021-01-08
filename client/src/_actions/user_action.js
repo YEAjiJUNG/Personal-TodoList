@@ -2,9 +2,11 @@ import axios from 'axios';
 import {
     LOGIN_USER,
     REGISTER_USER,
-    AUTH_USER
+    AUTH_USER,
+    TODOLIST_USER
 } from './types';
 
+//액션 생성 함수
 export function loginUser(dataTosubmit){//dataTosubmit은 dispatch(loginUser(body))의 body를 파라미터로 받은 것
 
     const request = axios.post('/api/users/login', dataTosubmit)
@@ -24,6 +26,17 @@ export function registerUser(dataTosubmit){
 
     return {
         type: REGISTER_USER ,
+        payload: request
+    }
+}
+
+export function todolistUser(dataTosubmit){
+
+    const request = axios.get('/api/users/todolist', dataTosubmit)
+        .then(response =>  response.data) 
+
+    return {
+        type: TODOLIST_USER ,
         payload: request
     }
 }
