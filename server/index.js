@@ -104,6 +104,25 @@ app.get('/api/users/todolist', auth, (req, res) => {
 //  _id: dsjfqwicowo (optional) => modify
 //  todo:
 //}
+
+app.post('/api/users/todo', auth, (req, res) => {
+    var useremail = req.user.email;
+    var todo = req.body.todo;
+    list = req.body.todolist;
+    list.push({"body": todo});
+
+    User.updateTodoList(useremail, list, (err) => {
+        if (err) {
+            return res.status(400).json({
+                success: false
+            })
+        }
+        return res.status(200).json({
+            success: true
+        })        
+    })
+})
+
 app.put('/api/users/todolist', auth, (req, res) => {
     var useremail = req.user.email; 
     var list = req.body.todolist;
