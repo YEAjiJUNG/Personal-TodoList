@@ -94,7 +94,7 @@ app.get('/api/users/logout', auth, (req, res) => {
 // Get Todo list from auth(token)
 app.get('/api/users/todolist', auth, (req, res) => {
     res.status(200).json({
-        listSuccess: true, name: req.user.name, todolist: req.user.todolist})
+        listSuccess: true, name: req.user.name, email: req.user.email, todolist: req.user.todolist})
 })
 
 // Update todolist
@@ -105,10 +105,10 @@ app.get('/api/users/todolist', auth, (req, res) => {
 //  todo:
 //}
 
-app.post('/api/users/todo', auth, (req, res) => {
+app.put('/api/users/todoinsert', auth, (req, res) => {
     var useremail = req.user.email;
     var todo = req.body.todo;
-    list = req.body.todolist;
+    list = req.user.todolist;
     list.push({"body": todo});
 
     User.updateTodoList(useremail, list, (err) => {
