@@ -3,7 +3,8 @@ import {
     LOGIN_USER,
     REGISTER_USER,
     AUTH_USER,
-    TODOLIST_USER
+    TODOLIST_USER,
+    ADDTODO_USER
 } from './types';
 
 //액션 생성 함수
@@ -26,6 +27,16 @@ export function registerUser(dataTosubmit){
 
     return {
         type: REGISTER_USER ,
+        payload: request
+    }
+}
+
+export function addTodo(dataTosubmit) {
+    const request = axios.put('/api/users/todoinsert', dataTosubmit)
+        .then(response => response.data)
+        
+    return {
+        type: ADDTODO_USER,
         payload: request
     }
 }

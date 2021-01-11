@@ -2,7 +2,8 @@ import {
     LOGIN_USER, 
     REGISTER_USER,
     AUTH_USER,
-    TODOLIST_USER
+    TODOLIST_USER,
+    ADDTODO_USER
 } from '../_actions/types';
 
 export default function(state={}, action) {
@@ -21,7 +22,9 @@ export default function(state={}, action) {
         case TODOLIST_USER :
             return { ...state, todoData: action.payload}
             break;
-
+        case ADDTODO_USER : 
+            return { ...state, addData: action.payload}
+            break;
         default:
             return state;
 
