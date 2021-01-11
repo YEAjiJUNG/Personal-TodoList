@@ -17,17 +17,17 @@ const TodoList = () => {
 
     const [todolist, setTodolist] = useState([]);
     const [name, setName] = useState("");
-     
+    const [email, setEmail] = useState("");
+    console.log(location.state.email);
     useEffect(() => {
-        let body = {
-            email: location.state.email
-        }
-
+        let body = {}
+        
         //dispatch이용해서 action취할 것이다. 그 action이름 loginUser
         dispatch(todolistUser(body))
             .then(response => {
                 if(response.payload.listSuccess){
                     setName(response.payload.name);
+                    setEmail(response.payload.email);
                     setTodolist(response.payload.todolist);
                 } else{
                     alert('Error')
@@ -36,7 +36,7 @@ const TodoList = () => {
     }, [])
     
 
-    console.log(name, todolist);
+    console.log(name, todolist, email);
     return(
         <div>
         <div className="hello">
@@ -49,7 +49,7 @@ const TodoList = () => {
                 <TodoListItem key={id} todo={todo}></TodoListItem>
                 ))}
                  <button className="button" onClick={() => {history.push({
-             pathname: "/todoinsert",state: {todolist: todolist}})}}>편집</button>
+             pathname: "/todoinsert"})}}>편집</button>
             </div>
         </TodoTemplatePage>
         </div>
