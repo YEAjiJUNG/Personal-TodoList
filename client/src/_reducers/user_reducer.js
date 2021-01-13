@@ -3,7 +3,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     TODOLIST_USER,
-    ADDTODO_USER
+    ADDTODO_USER,
+    REMOVETODO_USER
 } from '../_actions/types';
 
 export default function(state={}, action) {
@@ -24,6 +25,9 @@ export default function(state={}, action) {
             break;
         case ADDTODO_USER : 
             return { ...state, addData: action.payload}
+            break;
+        case REMOVETODO_USER :
+            return { ...state, removeData: action.payload}
             break;
         default:
             return state;

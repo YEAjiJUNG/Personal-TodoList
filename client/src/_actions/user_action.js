@@ -4,7 +4,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     TODOLIST_USER,
-    ADDTODO_USER
+    ADDTODO_USER,
+    REMOVETODO_USER
 } from './types';
 
 //액션 생성 함수
@@ -39,6 +40,16 @@ export function addTodo(dataTosubmit) {
         type: ADDTODO_USER,
         payload: request
     }
+}
+
+export function removeTodo(dataTosubmit){
+    const request = axios.delete('/api/users/todo', dataTosubmit)
+        .then(response => response.data)
+
+    return {
+        type: REMOVETODO_USER,
+        payload: request
+    } 
 }
 
 export function todolistUser(dataTosubmit){
