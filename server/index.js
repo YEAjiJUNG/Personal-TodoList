@@ -91,19 +91,28 @@ app.get('/api/users/logout', auth, (req, res) => {
     })
 })
 
+app.delete('/api/users/todo', auth, (req, res) => {
+    var useremail = req.user.email;
+    var index = req.body.index;
+    var list = req.user.todolist;
+    list.splice(index, 1);
+    User.updateTodoList(useremail, list, (err) => {
+        if (err) {
+            return res.status(400).json({
+                success:false
+            })
+        }
+        return res.status(200).json({
+            success: true
+        })
+    })
+})
+
 // Get Todo list from auth(token)
 app.get('/api/users/todolist', auth, (req, res) => {
     res.status(200).json({
         listSuccess: true, name: req.user.name, email: req.user.email, todolist: req.user.todolist})
 })
-
-// Update todolist
-// Add New todo element
-// Modify exist todo element
-// Body {
-//  _id: dsjfqwicowo (optional) => modify
-//  todo:
-//}
 
 app.put('/api/users/todoinsert', auth, (req, res) => {
     var useremail = req.user.email;
