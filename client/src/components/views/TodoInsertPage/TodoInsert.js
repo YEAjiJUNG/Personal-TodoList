@@ -1,22 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
-import {useHistory} from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import '../TodoPage/TodoTemplatePage.css';
 import TodoTemplatePage from '../TodoPage/TodoTemplatePage';
 import TodoInsertListItem from './TodoInsertListItem';
-import {MdAdd, MdAirlineSeatIndividualSuite} from 'react-icons/md';
+import {MdAdd} from 'react-icons/md';
 import './TodoInsert.scss';
+import '../TodoPage/TodoTemplatePage.css';
 import { addTodo, todolistUser } from '../../../_actions/user_action';
-import user from '../../../_reducers/index';
-
-//var test_list = [];
-var email_address = "";
+import * as onRemove from '../TodoInsertPage/TodoInsertListItem';
 
 function TodoInsert(){
     const history = useHistory();
-    const location = useLocation();
     const dispatch = useDispatch();
     
     //console.log("Location Test", location.state);
@@ -64,7 +58,7 @@ function TodoInsert(){
             </form>
             <div className="TodoInsertList">
                 {test_list.map((todo, id) =>(
-                <TodoInsertListItem key={id} todo={todo}></TodoInsertListItem>
+                <TodoInsertListItem key={id} _id={todo._id} todo={todo} onRemove={onRemove}></TodoInsertListItem>
                 ))}
             </div>
             <button className="button" onClick={() => {history.push({

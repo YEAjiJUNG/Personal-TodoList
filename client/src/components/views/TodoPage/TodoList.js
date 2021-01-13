@@ -4,13 +4,11 @@ import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
 import { useDispatch } from 'react-redux';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { todolistUser } from '../../../_actions/user_action';
 
 const TodoList = () => {
-    const location = useLocation();
     const history = useHistory();
 //get
     const dispatch = useDispatch();
@@ -18,7 +16,7 @@ const TodoList = () => {
     const [todolist, setTodolist] = useState([]);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    console.log(location.state.email);
+
     useEffect(() => {
         let body = {}
         
