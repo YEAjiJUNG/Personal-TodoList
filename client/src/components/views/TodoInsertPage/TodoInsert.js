@@ -15,20 +15,21 @@ function TodoInsert(){
     
     //console.log("Location Test", location.state);
     const [test_list, setTestList] = useState([]);
-    const [email, setEmail] = useState("");
+    const [dummy, setDummy] = useState(false);
+
     useEffect (() => {
         let body = {}
-
     // Get Todo list
         dispatch(todolistUser(body)).then(response => {
             if(response.payload.listSuccess){
                 setTestList(response.payload.todolist);
-                setEmail(response.payload.email);
+                //setEmail(response.payload.email);
             } else {
                     alert('Error')
            }
         });
-    }, []);
+    }, [dummy]);
+    //setDummy(0);
     // [TODO] Get Todolist from DB
     // TODOLIST
     const [todo, setTodo] = useState("");
@@ -38,7 +39,13 @@ function TodoInsert(){
             todo: todo
         }
         dispatch(addTodo(body)).then(response => {
-            console.log("SUCCESS ADD TODO");
+           if(response.payload.success){
+                setDummy(!dummy)
+           }
+           else{
+               alert('Error')
+           }
+
         });
         // Add Todo to DB
     }
@@ -50,15 +57,15 @@ function TodoInsert(){
     console.log("List:", test_list);
     return(
         <TodoTemplatePage>
-            <form className="TodoInsert" onSubmit={add}>
+            <form className="TodoInsert">
                 <input placeholder="할 일을 입력하세요" value={todo} onChange={onChange}/>
-                <button type="submit" >
+                <button type="submit" onClick={add}>
                     <MdAdd />
                 </button>
             </form>
             <div className="TodoInsertList">
                 {test_list.map((todo, id) =>(
-                <TodoInsertListItem key={id} _id={todo._id} todo={todo} onRemove={onRemove}></TodoInsertListItem>
+                <TodoInsertListItem key={id} id={id} todo={todo} rendering={setDummy} dummy={dummy}></TodoInsertListItem>
                 ))}
             </div>
             <button className="button" onClick={() => {history.push({
