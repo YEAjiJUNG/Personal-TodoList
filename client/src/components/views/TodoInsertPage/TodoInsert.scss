@@ -1,5 +1,5 @@
 .TodoInsert {
-  display: felx;
+  display: flex;
   background: #495057;
   input {
     background: none;
@@ -23,5 +23,8 @@
     align-items: center;
     cursor: pointer;
     display: flex;
+    &::placeholder {
+      color: #dee2e6;
+    }
   }
 }
