@@ -114,6 +114,38 @@ app.get('/api/users/todolist', auth, (req, res) => {
         listSuccess: true, name: req.user.name, email: req.user.email, todolist: req.user.todolist})
 })
 
+app.put('/api/users/todo', auth, (req, res) => {
+    var useremail = req.user.email;
+    var todo = req.body.todo;
+    var _id = req.body._id;
+    var list = req.user.todolist;
+    var check = false;
+    list.forEach(function(entry, index, list) {
+        if (entry._id == _id) {
+            entry.body = todo;
+            check = true;
+        }
+    });
+
+    if (!check) {
+        return res.status(400).json({
+            success: false,
+            message: "There is no entry"
+        });
+    }
+
+    User.updateTodoList(useremail, list, (err) => {
+        if (err) {
+            return res.status(400).json({
+                success: false
+            })
+        }
+        return res.status(200).json({
+            success: true
+        })        
+    })
+})
+
 app.put('/api/users/todoinsert', auth, (req, res) => {
     var useremail = req.user.email;
     var todo = req.body.todo;
