@@ -34,13 +34,15 @@ function TodoInsert(){
     // TODOLIST
     const [todo, setTodo] = useState("");
     console.log("First", test_list);
-    const add = () => {
+    const add = (e) => {
+        e.preventDefault();
         let body = {
             todo: todo
         }
         dispatch(addTodo(body)).then(response => {
            if(response.payload.success){
                 setDummy(!dummy)
+                setTodo("")
            }
            else{
                alert('Error')
@@ -57,9 +59,9 @@ function TodoInsert(){
     console.log("List:", test_list);
     return(
         <TodoTemplatePage>
-            <form className="TodoInsert">
+            <form className="TodoInsert" onSubmit={add}>
                 <input placeholder="할 일을 입력하세요" value={todo} onChange={onChange}/>
-                <button type="submit" onClick={add}>
+                <button type="submit" >
                     <MdAdd />
                 </button>
             </form>
