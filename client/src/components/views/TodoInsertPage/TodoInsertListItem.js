@@ -11,8 +11,15 @@ import { withRouter } from 'react-router-dom';
 import { removeTodo } from '../../../_actions/user_action';
 
 const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
-    const{ body } = todo;
+    const { body } = todo;
     const dispatch = useDispatch();
+
+    const [edittodo, setEdittodo] = useState("");
+    const [edit, setEdit] = useState(false);
+
+    const onChange = (e) => {
+        setEdittodo(e.target.value);
+    }
   
     const onRemove = () => {
         let body_ = {
@@ -34,11 +41,17 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
 
     }
 
+    const test = ( ) => {
+        console.log("TEST!!");
+        setEdit(true);
+    }
+
     return(
         <div className="TodoInsertListItem">
             <div className="checkbox">
                 <MdCheckBoxOutlineBlank />
-                <div className="text">{body}</div>
+                <div className="text" onClick={test}>{body}</div>
+                {edit? <div className="text"><input value={body} onChange={onChange}/></div> : <div >{body}</div>}
             </div>
             <div className="remove" onClick={onRemove}>
                 <MdRemoveCircleOutline />

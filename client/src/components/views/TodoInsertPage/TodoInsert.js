@@ -22,8 +22,8 @@ function TodoInsert(){
     // Get Todo list
         dispatch(todolistUser(body)).then(response => {
             if(response.payload.listSuccess){
+                console.log(response);
                 setTestList(response.payload.todolist);
-                //setEmail(response.payload.email);
             } else {
                     alert('Error')
            }
