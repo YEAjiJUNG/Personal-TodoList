@@ -1,4 +1,4 @@
-import React , { useState }from 'react';
+import React , { useState, useCallback }from 'react';
 import {
     MdCheckBoxOutlineBlank,
     MdCheckBox,
@@ -14,12 +14,12 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
     const { body } = todo;
     const dispatch = useDispatch();
 
-    const [edittodo, setEdittodo] = useState("");
+    const [edittodo, setEdittodo] = useState(body);
     const [edit, setEdit] = useState(false);
 
-    const onChange = (e) => {
+    const onChange = useCallback(e => {
         setEdittodo(e.target.value);
-    }
+    }, [])
   
     const onRemove = () => {
         let body_ = {
@@ -51,7 +51,7 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
             <div className="checkbox">
                 <MdCheckBoxOutlineBlank />
                 <div className="text" onClick={test}>{body}</div>
-                {edit? <div className="text"><input value={body} onChange={onChange}/></div> : <div >{body}</div>}
+                {edit? <div className="text"><input value={edittodo} onChange={onChange}/></div> : <div ></div>}
             </div>
             <div className="remove" onClick={onRemove}>
                 <MdRemoveCircleOutline />
