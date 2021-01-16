@@ -52,6 +52,17 @@ export function removeTodo(dataTosubmit){
     } 
 }
 
+export function modifyTodo(dataTosubmit) {
+    console.log("Request", dataTosubmit);
+    const request = axios.put('/api/users/todo', dataTosubmit)
+        .then(response => response.data)
+
+    return {
+        type: ADDTODO_USER,
+        payload: request
+    }
+}
+
 export function todolistUser(dataTosubmit){
 
     const request = axios.get('/api/users/todolist', dataTosubmit)

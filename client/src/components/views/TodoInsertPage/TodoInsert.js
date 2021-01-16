@@ -49,7 +49,6 @@ function TodoInsert(){
            }
 
         });
-        // Add Todo to DB
     }
 
     const onChange = useCallback(e => {

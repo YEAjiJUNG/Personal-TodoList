@@ -115,6 +115,7 @@ app.get('/api/users/todolist', auth, (req, res) => {
 })
 
 app.put('/api/users/todo', auth, (req, res) => {
+    console.log(req.body);
     var useremail = req.user.email;
     var todo = req.body.todo;
     var _id = req.body._id;

@@ -8,7 +8,7 @@ import {useDispatch} from 'react-redux';
 import cn from 'classnames';
 import './TodoInsertListItem.scss';
 import { withRouter } from 'react-router-dom';
-import { removeTodo, modifyTodo } from '../../../_actions/user_action';
+import { removeTodo } from '../../../_actions/user_action';
 import TodoModifyBox from './TodoModifyBox'; 
 
 const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
@@ -38,28 +38,17 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
                     alert('Error')
            }
         });
+
+
     }
 
     const test = ( ) => {
         setEdit(true);
     }
 
-    const modify = (e) => {
-        e.preventDefault();
-        let body_ = {
-            _id: todo._id,
-            todo: edittodo
-        }
-        //setBody(edittodo);
-        dispatch(modifyTodo(body_)).then(response => {
-            if(response.payload.success){
-                rendering(!dummy);
-                console.log('modify success')
-            } else {
-                    alert('Error')
-           }
-        });
-        setEdit(false);
+    const modify = () => {
+        console.log("TEST");
+        setBody(edittodo);
     }
 
     return(

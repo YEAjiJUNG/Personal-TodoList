@@ -28,3 +28,18 @@
     }
   }
 }
+
+.TodoModify {
+  display: flex;
+  background: #495057;
+  input {
+    background: none;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: white;
+    flex: 1;
+  }
+}
