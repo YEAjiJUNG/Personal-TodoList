@@ -37,10 +37,8 @@ const TodoList = () => {
     console.log(name, todolist, email);
     return(
         <div>
-        <div className="hello">
-            <b>{name}</b>님 안녕하세요!<br/>
-            일정을 확인하세요:)
-        </div>
+        <button title="Go to Todo List" className="hello" onClick={() => {history.push({
+            pathname: "/todolistt"})}}>{name}</button>
         <TodoTemplatePage>
             <div className="TodoList">
                 {todolist.map((todo, id) =>(
