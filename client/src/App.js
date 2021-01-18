@@ -15,15 +15,11 @@ import TodoInsertListItem from './components/views/TodoInsertPage/TodoInsertList
 
 //Route의 exact path는 경로가 완전히 일치할 때만 그 페이지로 이동
 function App() {
-
-
-
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Auth(LandingPage, null)} />  
-          <Route path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/" component={Auth(LoginPage, false)} />  
           <Route path="/register" component={Auth(RegisterPage, false)} />
           <Route path="/todolist" component={Auth(TodoList, true)} />
           <Route path="/todoinsert" component={Auth(TodoInsert, true)} />
