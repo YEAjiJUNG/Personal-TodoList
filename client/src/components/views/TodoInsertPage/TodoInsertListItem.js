@@ -12,8 +12,9 @@ import { removeTodo, modifyTodo } from '../../../_actions/user_action';
 import TodoModifyBox from './TodoModifyBox'; 
 
 const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
-    const [body, setBody] = useState(todo.body);
     const dispatch = useDispatch();
+
+    const [body, setBody] = useState(todo.body);
 
     const [edittodo, setEdittodo] = useState(body);
     const [edit, setEdit] = useState(false);
@@ -45,7 +46,7 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
     }
 
     const modify = (e) => {
-        e.preventDefault();
+        console.log("djdjdsjklsjkdls", edittodo)
         let body_ = {
             _id: todo._id,
             todo: edittodo
@@ -59,6 +60,7 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
                     alert('Error')
            }
         });
+
         setEdit(false);
     }
 
