@@ -5,18 +5,18 @@ import {
     MdRemoveCircleOutline,
 } from 'react-icons/md';
 import {useDispatch} from 'react-redux';
-import cn from 'classnames';
 import './TodoInsertListItem.scss';
 import { withRouter } from 'react-router-dom';
 import { removeTodo, modifyTodo } from '../../../_actions/user_action';
 import TodoModifyBox from './TodoModifyBox'; 
 
 const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
+    console.log("ListItem useState");
     const dispatch = useDispatch();
 
-    const [body, setBody] = useState(todo.body);
+    //const [body, setBody] = useState(todo.body);
 
-    const [edittodo, setEdittodo] = useState(body);
+    const [edittodo, setEdittodo] = useState(todo.body);
     const [edit, setEdit] = useState(false);
 
     const onChange = useCallback(e => {
@@ -29,7 +29,7 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
                 index: id
             }
         }
-        //console.log("Remove!!", id, body_);
+        console.log("Remove!!", id, body_);
         dispatch(removeTodo(body_)).then(response => {
             if(response.payload.success){
                // console.log(response.payload.email);
@@ -46,7 +46,6 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
     }
 
     const modify = (e) => {
-        console.log("djdjdsjklsjkdls", edittodo)
         let body_ = {
             _id: todo._id,
             todo: edittodo
@@ -63,12 +62,12 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
 
         setEdit(false);
     }
-
+    console.log("List item", todo.body, id);
     return(
         <div className="TodoInsertListItem">
             <div className="checkbox">
                 <MdCheckBoxOutlineBlank />
-                <div className="text" onClick={test}>{body}</div>
+                <div className="text" onClick={test}>{todo.body}</div>
                     <TodoModifyBox edittodo={edittodo} edit={edit} modify={modify} onChange={onChange}></TodoModifyBox>
             </div>
             <div className="remove" onClick={onRemove}>
