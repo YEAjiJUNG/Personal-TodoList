@@ -42,10 +42,12 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
     }
 
     const test = ( ) => {
+
         setEdit(true);
     }
 
     const modify = (e) => {
+        console.log("modify");
         let body_ = {
             _id: todo._id,
             todo: edittodo
@@ -65,11 +67,8 @@ const TodoInsertListItem = ({ todo, id, rendering, dummy }) => {
     console.log("List item", todo.body, id);
     return(
         <div className="TodoInsertListItem">
-            <div className="checkbox">
-                <MdCheckBoxOutlineBlank />
                 <div className="text" onClick={test}>{todo.body}</div>
                     <TodoModifyBox edittodo={edittodo} edit={edit} modify={modify} onChange={onChange}></TodoModifyBox>
-            </div>
             <div className="remove" onClick={onRemove}>
                 <MdRemoveCircleOutline />
             </div>
