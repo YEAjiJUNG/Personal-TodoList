@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { todolistUser } from '../../../_actions/user_action';
 
+
 const TodoList = () => {
     const history = useHistory();
 //get
@@ -38,7 +39,8 @@ const TodoList = () => {
     return(
         <div>
         <button title="Go to Todo List" className="hello" onClick={() => {history.push({
-            pathname: "/todolistt"})}}>{name}</button>
+            pathname: "/todolist"})}}>{name}</button>
+            <button title="logout" className="bye" conClick ={() => history.push({pathname: "/"})}>logout</button>
         <TodoTemplatePage>
             <div className="TodoList">
                 {todolist.map((todo, id) =>(

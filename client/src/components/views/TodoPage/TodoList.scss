@@ -8,7 +8,7 @@
 }
 
 .hello {
-  background-color: #FF0000;
+  background-color: #ff0000;
   border: none;
   font-family: cursive;
   font-weight: bold;
@@ -20,8 +20,26 @@
   border-radius: 50%;
   color: white;
   cursor: pointer;
+  &:hover {
+    background-color: #ffcccc;
+    box-shadow: 0px 0px 5px 4px rgb(223, 216, 214);
+  }
+}
+.bye {
+  background-color: white;
+  box-shadow: 0px 0px 3px -2px rgb(10, 10, 10);
 }
 
-.hello:hover {
-  background-color: #FFCCCC;
+.button {
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 30%;
+  background-color: #92c1ec;
+  opacity: 0.6;
+  border: none;
+  padding: 5px 7px 5px 7px;
+  -webkit-transition: all 0.3s;
+  &:hover {
+    background-color: #b6dcdf;
+  }
 }
