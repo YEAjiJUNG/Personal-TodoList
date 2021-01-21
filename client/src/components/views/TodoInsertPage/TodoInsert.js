@@ -16,6 +16,7 @@ function TodoInsert(){
     //console.log("Location Test", location.state);
     const [test_list, setTestList] = useState([]);
     const [dummy, setDummy] = useState(false);
+    const [ name , setName] = useState("");
 
     useEffect (() => {
         console.log("useEffect");
@@ -25,6 +26,7 @@ function TodoInsert(){
             if(response.payload.listSuccess){
                 console.log("UseEffect in TodoInsert", response.payload.todolist);
                 setTestList(response.payload.todolist);
+                setName(response.payload.name);
             } else {
                     alert('Error')
            }
@@ -35,6 +37,7 @@ function TodoInsert(){
     // TODOLIST
     const [todo, setTodo] = useState("");
     const add = (e) => {
+        console.log("ADD START");
         e.preventDefault();
         let body = {
             todo: todo
@@ -60,7 +63,10 @@ function TodoInsert(){
 
     console.log("Before Rendering", test_list);
     return(
-        <TodoTemplatePage>
+        <div>
+            <button title="Go to Todo List" className="hello" onClick={() => {history.push({
+            pathname: "/todolist"})}}>{name}</button>
+            <TodoTemplatePage>
             <form className="TodoInsert" onSubmit={add}>
                 <input placeholder="할 일을 입력하세요" value={todo} onChange={onChange}/>
                 <button type="submit" >
@@ -75,6 +81,8 @@ function TodoInsert(){
             <button className="button" onClick={() => {history.push({
              pathname: "/todolist"})}}>저장</button>
         </TodoTemplatePage>
+        </div>
+        
     )
 }
 
