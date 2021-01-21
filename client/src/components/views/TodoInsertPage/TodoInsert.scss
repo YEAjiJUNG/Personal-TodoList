@@ -43,3 +43,22 @@
     flex: 1;
   }
 }
+
+.hello {
+  background-color: #ff0000;
+  border: none;
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+  padding: 5px 10px 10px 10px;
+  -webkit-transition: all 0.3s;
+  margin: 5px 5px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+.hello:hover {
+  background-color: #ffcccc;
+}
