@@ -25,7 +25,7 @@ function RegisterPage(props){
         setConfirmPassword(e.target.value)
     }
     const onSubmitHandler = (e) => {
-        e.preventDefault();//페이지 리프레시 막아준다
+        e.preventDefault();
 
         if(Password !== ConfirmPassword){
             return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
@@ -37,11 +37,11 @@ function RegisterPage(props){
             name: Name,
             password: Password,
         }
-        //dispatch이용해서 action취할 것이다. 그 action이름 registerUser
+        
         dispatch(registerUser(body))
             .then(response => {
                 if(response.payload.success){
-                    props.history.push('/login') //register을 눌러 response받으면 /login으로 이동
+                    props.history.push('/login')
                 } else{
                     alert('Failed to sign up')
                 }

@@ -1,53 +1,56 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import TodoTemplatePage from './TodoTemplatePage';
 import './TodoList.scss';
 import TodoListItem from './TodoListItem';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {useHistory} from 'react-router-dom';
 import { todolistUser } from '../../../_actions/user_action';
 
 
-const TodoList = () => {
-    const history = useHistory();
-//get
+const TodoList = (props) => {
     const dispatch = useDispatch();
 
     const [todolist, setTodolist] = useState([]);
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
 
-    useEffect(() => {
+    useEffect(() => { 
         let body = {}
         
-        //dispatch이용해서 action취할 것이다. 그 action이름 loginUser
         dispatch(todolistUser(body))
             .then(response => {
                 if(response.payload.listSuccess){
                     setName(response.payload.name);
-                    setEmail(response.payload.email);
                     setTodolist(response.payload.todolist);
                 } else{
                     alert('Error')
                 }
             })
-    }, [])
+    }, [dispatch])
     
+    const onClickHandler = () => {
+        axios.get('/api/users/logout')
+        .then(response => {
+            if(response.data.success){
+                props.history.push('/');
+            }
+            else{
+                alert('로그아웃 하는데 실패 했습니다.')
+            }
+        })
+    }
 
-    console.log(name, todolist, email);
     return(
         <div>
-        <button title="Go to Todo List" className="hello" onClick={() => {history.push({
-            pathname: "/todolist"})}}>{name}</button>
-            <button title="logout" className="bye" conClick ={() => history.push({pathname: "/"})}>logout</button>
+        <button title="Go to Todo List" className="hello" onClick={() => props.history.push("/todolist")}>{name}</button>
+            <button title="logout" className="bye" onClick ={onClickHandler}>logout</button>
         <TodoTemplatePage>
             <div className="TodoList">
                 {todolist.map((todo, id) =>(
                 <TodoListItem key={id} todo={todo}></TodoListItem>
                 ))}
-                 <button className="button" onClick={() => {history.push({
-             pathname: "/todoinsert"})}}>편집</button>
+                 <button className="button" onClick={() => props.history.push("/todoedit")}>편집</button>
             </div>
         </TodoTemplatePage>
         </div>

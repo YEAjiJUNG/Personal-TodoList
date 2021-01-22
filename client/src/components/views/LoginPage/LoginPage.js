@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 
 function LoginPage(props){
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
@@ -19,21 +16,17 @@ function LoginPage(props){
         setPassword(e.target.value)
     }
     const onSubmitHandler = (e) => {
-        e.preventDefault();//페이지 리프레시 막아준다
-
+        e.preventDefault();
 
         let body = {
             email: Email,
             password: Password
         }
-        //dispatch이용해서 action취할 것이다. 그 action이름 loginUser
         dispatch(loginUser(body))
             .then(response => {
-                if(response.payload.loginSuccess){history.push({
-                    pathname:'/todolist', state: {email: response.payload.email}
-                }) 
-                    //login을 눌러 response받으면 /로 끝나는 루트페이지로 이동
-                } else{
+                if(response.payload.loginSuccess)
+                    props.history.push('/todolist')
+                else{
                     alert('Error')
                 }
             })

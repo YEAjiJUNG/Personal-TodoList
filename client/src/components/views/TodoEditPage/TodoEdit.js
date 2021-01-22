@@ -2,53 +2,43 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import TodoTemplatePage from '../TodoPage/TodoTemplatePage';
-import TodoInsertListItem from './TodoInsertListItem';
+import TodoEditListItem from './TodoEditListItem';
 import {MdAdd} from 'react-icons/md';
-import './TodoInsert.scss';
-import '../TodoPage/TodoTemplatePage.css';
+import './TodoEdit.scss';
+import '../TodoPage/TodoTemplatePage.scss';
 import { addTodo, todolistUser } from '../../../_actions/user_action';
-import * as onRemove from '../TodoInsertPage/TodoInsertListItem';
 
-function TodoInsert(){
+function TodoEdit(props){
     const history = useHistory();
     const dispatch = useDispatch();
-    console.log("useState");
-    //console.log("Location Test", location.state);
+
     const [test_list, setTestList] = useState([]);
     const [dummy, setDummy] = useState(false);
     const [ name , setName] = useState("");
 
     useEffect (() => {
-        console.log("useEffect");
         let body = {}
-    // Get Todo list
+    
         dispatch(todolistUser(body)).then(response => {
             if(response.payload.listSuccess){
-                console.log("UseEffect in TodoInsert", response.payload.todolist);
                 setTestList(response.payload.todolist);
                 setName(response.payload.name);
             } else {
                     alert('Error')
            }
         });
-    }, [dummy]);
-    //setDummy(0);
-    // [TODO] Get Todolist from DB
-    // TODOLIST
+    }, [dummy, dispatch]);
+    
     const [todo, setTodo] = useState("");
     const add = (e) => {
-        console.log("ADD START");
         e.preventDefault();
         let body = {
             todo: todo
         }
         dispatch(addTodo(body)).then(response => {
            if(response.payload.success){
-               console.log("Before Dummy");
                 setDummy(!dummy)
-                console.log("After Dummy");
                 setTodo("")
-                console.log("After Todo")
            }
            else{
                alert('Error')
@@ -61,21 +51,19 @@ function TodoInsert(){
         setTodo(e.target.value);
     }, [])
 
-    console.log("Before Rendering", test_list);
     return(
         <div>
-            <button title="Go to Todo List" className="hello" onClick={() => {history.push({
-            pathname: "/todolist"})}}>{name}</button>
+            <button title="Go to Todo List" className="hello" onClick={() => {props.history.push("/todolist")}}>{name}</button>
             <TodoTemplatePage>
-            <form className="TodoInsert" onSubmit={add}>
+            <form className="TodoEdit" onSubmit={add}>
                 <input placeholder="할 일을 입력하세요" value={todo} onChange={onChange}/>
                 <button type="submit" >
                     <MdAdd />
                 </button>
             </form>
-            <div className="TodoInsertList">
+            <div className="TodoEditList">
                 {test_list.map((todo, id) =>(
-                <TodoInsertListItem key={id} id={id} todo={todo} rendering={setDummy} dummy={dummy}></TodoInsertListItem>
+                <TodoEditListItem key={id} id={id} todo={todo} rendering={setDummy} dummy={dummy}></TodoEditListItem>
                 ))}
             </div>
             <button className="button" onClick={() => {history.push({
@@ -86,4 +74,4 @@ function TodoInsert(){
     )
 }
 
-export default withRouter(TodoInsert);
+export default withRouter(TodoEdit);
