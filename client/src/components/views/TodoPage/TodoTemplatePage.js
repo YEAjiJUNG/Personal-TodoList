@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './TodoTemplatePage.scss';
-import { useHistory } from 'react-router-dom';
 
 function TodoTemplatePage({children}){
 
