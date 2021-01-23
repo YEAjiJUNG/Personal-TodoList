@@ -38,4 +38,8 @@ On this page, you can add, delete, and modify lists. After editing, click the sa
 
 ## Preview
 
-<img width="959" alt="캡처" src="https://user-images.githubusercontent.com/66558804/105289840-933b7b80-5bfb-11eb-8427-d3fe7519f564.PNG">
+> login page
+> <img width="959" alt="login" src="https://user-images.githubusercontent.com/66558804/105577338-42bf4c00-5dbc-11eb-981f-a8a0d8c7bd8c.PNG">
+
+> todolist page
+> <img width="959" alt="todolist" src="https://user-images.githubusercontent.com/66558804/105577349-5965a300-5dbc-11eb-9db6-0d4bea7943e9.PNG">
