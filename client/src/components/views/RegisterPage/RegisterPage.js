@@ -44,7 +44,7 @@ function RegisterPage(props){
                 if(response.payload.success){
                     props.history.push('/')
                 } else{
-                    alert('Failed to sign up')
+                    alert('Your email already exists!')
                 }
             })
 
