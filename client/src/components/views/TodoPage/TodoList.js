@@ -43,8 +43,10 @@ const TodoList = (props) => {
 
     return(
         <div>
-        <button title="Go to Todo List" className="hello" onClick={() => props.history.push("/todolist")}>{name}</button>
+            <div className="btn-group">
+            <button title="Go to Todo List" className="hello" onClick={() => props.history.push("/todolist")}>{name}</button>
             <button title="logout" className="bye" onClick ={onClickHandler}>logout</button>
+            </div>
         <TodoTemplatePage>
             <div className="TodoList">
                 {todolist.map((todo, id) =>(

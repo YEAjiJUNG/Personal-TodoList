@@ -53,7 +53,9 @@ function TodoEdit(props){
 
     return(
         <div>
+            <div className="btn-control">
             <button title="Go to Todo List" className="hello" onClick={() => {props.history.push("/todolist")}}>{name}</button>
+            </div>   
             <TodoTemplatePage>
             <form className="TodoEdit" onSubmit={add}>
                 <input placeholder="할 일을 입력하세요" value={todo} onChange={onChange}/>
