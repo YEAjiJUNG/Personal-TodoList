@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
+import './LoginPage.scss';
 
 function LoginPage(props){
     const dispatch = useDispatch();
@@ -14,6 +15,9 @@ function LoginPage(props){
     }
     const onPasswordHandler = (e) => {
         setPassword(e.target.value)
+    }
+    const onClick = () => {
+        props.history.push("/register");
     }
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -34,20 +38,25 @@ function LoginPage(props){
     }
 
     return(
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center",  
-            width: "100%", height: "100vh"}}>
-            <form style={{ display:'flex', flexDirection:'column'}}
-                onSubmit={onSubmitHandler}>
-                <label>Email</label>
-                <input type="email" value={Email} onChange={onEmailHandler} />
-                <label>Password</label>
-                <input type="password" value={Password} onChange={onPasswordHandler} />
-                <br />
-                <button type="submit">
-                    Login
-                </button>
-            </form>
-    
+        <div className="outer">
+            <form className="inner" onSubmit={onSubmitHandler}>
+
+                <h2>Log in</h2>
+
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="email" className="form-control" onChange={onEmailHandler} placeholder="Enter email" />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Enter password" onChange={onPasswordHandler} />
+                </div>
+
+                <button type="submit" className="btn">Sign in</button>
+                <button type="button" className="btn" onClick={onClick}>go to sign up!</button>
+        
+        </form>
         </div>
     )
 }
