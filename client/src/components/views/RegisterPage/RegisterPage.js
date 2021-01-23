@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../_actions/user_action';
 import { withRouter } from 'react-router-dom';
+import './RegisterPage.scss';
 
 
 function RegisterPage(props){
@@ -50,21 +51,27 @@ function RegisterPage(props){
     }
 
     return(
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center",  
-            width: "100%", height: "100vh"}}>
-            <form style={{ display:'flex', flexDirection:'column'}}
-                onSubmit={onSubmitHandler}>
+        <div className="outer">
+            <form className="inner" onSubmit={onSubmitHandler}>
+                <div className="form-group">
                 <label>Email</label>
-                <input type="email" value={Email} onChange={onEmailHandler} />
+                <input type="email" className="form-control" value={Email} onChange={onEmailHandler} placeholder="Enter Email"/>
+                </div>
+                <div className="form-group">
                 <label>Name</label>
-                <input type="text" value={Name} onChange={onNameHandler} />
+                <input type="text" className="form-control" value={Name} onChange={onNameHandler} placeholder="Enter Name"/>
+                </div>
+                <div className="form-group">
                 <label>Password</label>
-                <input type="password" value={Password} onChange={onPasswordHandler} />
+                <input type="password" className="form-control" value={Password} onChange={onPasswordHandler} placeholder="Enter Password"/>
+                </div>
+                <div className="form-group">
                 <label>Confirm Password</label>
-                <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
+                <input type="password" className="form-control" value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder="Enter Confirm Password"/>
+                </div>
                 <br />
-                <button type="submit">
-                    회원가입
+                <button type="submit" className="btn">
+                    Sign up
                 </button>
             </form>
     
